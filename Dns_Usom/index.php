@@ -30,7 +30,7 @@ if (strlen($sonuc1) > 1) die("hata olustu");
 if (strlen($sonuc2) > 1) die("hata olustu");
 
 // buraya geldi ise derleyici, hata yoktur. islemlere devam ediyorum
-// usom son kayıt tarihini ve son kayıt ID sini alıyorum
+// usomdan son kayıt tarihini ve son kayıt ID sini alıyorum
 $usom_data = $Usom->Usom_Son_Id_Tarih_Oku();
 $usom_son_id = $usom_data[0];
 $usom_son_guncelleme = $usom_data[1];
