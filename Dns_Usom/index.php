@@ -19,17 +19,6 @@ $ssh2 = new Net_SSH2($server2);
 $sftp2 = new Net_SFTP($server2);
 $Usom = new Usom;
 
-if (!$ssh1->login($username1, $password1)) exit('Net_SSH2 baglantisi yapılamadı.');
-if (!$sftp1->login($username1, $password1)) exit('Net_SFTP baglantisi yapılamadı.');
-if (!$ssh2->login($username2, $password2)) exit('Net_SSH2 baglantisi yapılamadı.');
-if (!$sftp2->login($username2, $password2)) exit('Net_SFTP baglantisi yapılamadı.');
-
-// kopyalama islemi basarili ise cikti gondermiyor. basarisiz ise cikti veriyor.
-// cikti var ise hata olustu.
-if (strlen($sonuc1) > 1) die("hata olustu");
-if (strlen($sonuc2) > 1) die("hata olustu");
-
-// buraya geldi ise derleyici, hata yoktur. islemlere devam ediyorum
 // usomdan son kayıt tarihini ve son kayıt ID sini alıyorum
 $usom_data = $Usom->Usom_Son_Id_Tarih_Oku();
 $usom_son_id = $usom_data[0];
@@ -39,15 +28,28 @@ echo "Son güncelleme tarihi:" . $usom_son_guncelleme . "<br />";
 // usomdan gelen son id dosya ya yazdığımız son id den buyuk ise yeni domain bloklanmıştır.
 if ($usom_son_id > $Usom->Dosya_Son_Id_Oku())
 {
+	if (!$ssh1->login($username1, $password1)) exit('Net_SSH2 baglantisi yapılamadı.');
+	if (!$sftp1->login($username1, $password1)) exit('Net_SFTP baglantisi yapılamadı.');
+	if (!$ssh2->login($username2, $password2)) exit('Net_SSH2 baglantisi yapılamadı.');
+	if (!$sftp2->login($username2, $password2)) exit('Net_SFTP baglantisi yapılamadı.');
+	
+	// buraya geldi ise derleyici, hata yoktur. onceki blacklisted.zones dosyasının yedeğini alıyorum
+	// olurda servis oturmaz ise blacklisted.zones_Yedek dosyasını geri yukleyip servisin
+	// running olmasını isteyeceğiz.
 	$sonuc1 = $ssh1->exec("cp /etc/bind/blacklisted.zones /etc/bind/blacklisted.zones_Yedek");
 	$sonuc2 = $ssh2->exec("cp /etc/bind/blacklisted.zones /etc/bind/blacklisted.zones_Yedek");
-
+	
+	// kopyalama islemi basarili ise cikti gondermiyor. basarisiz ise cikti veriyor.
+	// cikti var ise hata olustu.
+	if (strlen($sonuc1) > 1) die("kopyalama hatası olustu");
+	if (strlen($sonuc2) > 1) die("kopyalama hatası olustu");	
+	
 	// usom xml dosyasındaki kayıtları blacklisted.zones dosyasına uygun formatta yazıyorum.
 	echo $sonuc_parser = $Usom->Usom_Url_Parser();
 
 	// usom xml deki son kayıdın id sini, sonkayit adli dosyaya yazıyorum.
 	// yeni kayıt gelip gelmediğini daha sonra bu id değerine bakarak anlıcam
-	// (tarihe bakarakta anlayabilirdik)
+	// (tarihe bakarak da anlayabilirdik)
 	$Usom->Dosya_Son_Id_Yaz($usom_son_id);
 
 	// olusan dosyayı sftp ile dns sunucuya transfer ediyorum
@@ -63,7 +65,6 @@ else
 }
 
 // dosyayı dns sunucuya gonderdikten sonra services i restart yapıyoruz
-
 echo $sonuc1 = $ssh1->exec("service bind9 restart") . "<br />";
 echo $sonuc2 = $ssh2->exec("service bind9 restart") . "<br />";
 
@@ -80,7 +81,7 @@ if (strpos($sonuc1, 'SUCCESS') !== false)
 }
 else
 {
-	// yok ise zones_Yedek dosyasını geri yukleyip servisi restart ediyoruz
+	// servis success değil ise zones_Yedek dosyasını geri yukleyip servisi restart ediyoruz
 	echo $sonuc1 = $ssh1->exec("cp /etc/bind/blacklisted.zones_Yedek /etc/bind/blacklisted.zones");
 	echo $sonuc1 = $ssh1->exec("service bind9 restart") . "<br />";
 	sleep(10);
@@ -101,7 +102,7 @@ if (strpos($sonuc2, 'SUCCESS') !== false)
 }
 else
 {
-	// yok ise zones_Yedek dosyasını geri yukleyip servisi restart ediyoruz
+	// servis success değil ise zones_Yedek dosyasını geri yukleyip servisi restart ediyoruz
 	echo $sonuc2 = $ssh2->exec("cp /etc/bind/blacklisted.zones_Yedek /etc/bind/blacklisted.zones");
 	echo $sonuc2 = $ssh2->exec("service bind9 restart") . "<br />";
 	sleep(10);
