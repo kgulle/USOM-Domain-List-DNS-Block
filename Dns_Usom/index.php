@@ -85,11 +85,12 @@ else
 	echo $sonuc1 = $ssh1->exec("service bind9 restart") . "<br />";
 	sleep(10);
 	echo $sonuc1 = $ssh1->exec("service bind9 status") . "<br />";
-	if (strpos($sonuc1, 'SUCCESS') !== false) echo ("calisiyor...");
+	if (strpos($sonuc1, 'SUCCESS') !== false) $sonuc1=true;
 	else
 	{
 		$Usom->SMS_Gonder("05423322504", $server1." ACIL DURUM Servis çalışmıyor!", "normal");
 		echo "mesaj gonder servis calismiyor";
+		$sonuc1=false;
 	}
 }
 // ikinci dns servisimiz için işlemleri yapıyoruz.
@@ -105,11 +106,12 @@ else
 	echo $sonuc2 = $ssh2->exec("service bind9 restart") . "<br />";
 	sleep(10);
 	echo $sonuc2 = $ssh2->exec("service bind9 status") . "<br />";
-	if (strpos($sonuc2, 'SUCCESS') !== false) echo ("calisiyor...");
+	if (strpos($sonuc2, 'SUCCESS') !== false) $sonuc2=true;
 	else
 	{
 		$Usom->SMS_Gonder("05423322504",$server2. " ACIL DURUM Servis çalışmıyor!", "normal");
 		echo "mesaj gonder servis calismiyor";
+		$sonuc2=false;
 	}
 }
 
