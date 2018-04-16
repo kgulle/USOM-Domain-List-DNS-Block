@@ -14,7 +14,7 @@ formatında ekleyerek engelleyebiliriz.
 
 3. Şimdi PHP kodlarını web serverimiza atıp onları belirli süreler ile çalıştırmaktan ibaret. 
 Bu süreç değişen zararlı bağlantı listesini blacklisted.zones dosyasına uygun formatta yazıp dns sunucularımıza gönderip DNS servisini yeniden başlatıp DNS servisimizin status çıktısı *SUCCESS* ise ilgili kişiye sms gondermesi. 
-NOT. bazı bind sunucularda service bind status çıktısı *running* olarak çıktı veriyor eğer sizde de öyle ise kod da success ola yerleri running olarak değiştirmemiz gerekmektedir.
+NOT. bazı bind sunucularda service bind status çıktısı *running* olarak çıktı veriyor eğer sizde de öyle ise kod da success ola yerleri *running* olarak değiştirmemiz gerekmektedir.
 
 4. Windows web sunucularda kodumuzun istediğimiz periyotlarda çalışması için görev zamanlayıcı oluşturup index.php dosyasını çalıştırmamız lazım. bunun için ben .bat dosyası oluşturup görev zamanlıyıcıda .bat dosyasını çaliştirarak yaptım. Linux makinelerde crontab yazarak daha basit şekilde yapabiliriz.
 
