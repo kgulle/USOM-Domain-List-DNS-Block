@@ -1,10 +1,10 @@
 # USOM Zararlı Bağlantı Listesini Bind DNS Servisinde Engelleme.
 
-PHP ile geliştirdiğimiz uygulama ile USOM zararlı bağlantı listesindeki(https://www.usom.gov.tr/zararli-baglantilar/1.html) domain adreslerini istediğimiz periyotlarla DNS sunucumuzda zararlı domain için zone kaydı oluşturarak sahte IP adresine yönlendirerek engelliyoruz.
+PHP ile geliştirdiğimiz uygulama ile USOM zararlı bağlantı listesindeki(https://www.usom.gov.tr/zararli-baglantilar/1.html) domain adreslerini istediğimiz periyotlarla DNS sunucumuzda engelliyoruz.
 
 # KURULUM
 
-1. DNS sunucumuzda /etc/bind klasörüne blockeddomains.db dosyasını ekliyoruz. (Bu dosyadaki 127.0.0.1 adresi engellenen domain adreslerinin hangi ip adresine yönlendireceğimiz bilgisidir.)
+1. DNS sunucumuzda **/etc/bind** klasörüne blockeddomains.db dosyasını ekliyoruz. (Bu dosyadaki 127.0.0.1 adresi engellenen domain adreslerinin hangi ip adresine yönlendireceğimiz bilgisidir.)
 
 2. Dns sunucumuzda named.conf.local dosyasının en üstüne include "/etc/bind/blacklisted.zones"; satırını ekliyoruz. ve DNS sunucumuzda işlemimiz bitiyor. İkinci DNS sunucumuzdada yukarıdaki işlemleri yapmamız lazım. Mevcut betik iki dns sunucu için yazılmıştır. Bir DNS veya 2 den fazla DNS sunucu için kodda basit değişkilik yapmanız gerekir.
 
