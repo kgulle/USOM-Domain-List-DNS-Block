@@ -9,7 +9,7 @@ PHP ile geliştirdiğimiz uygulama ile USOM zararlı bağlantı listesindeki(htt
 2. Dns sunucumuzda **named.conf.local** dosyasının en üstüne include **"/etc/bind/blacklisted.zones";** satırını ekliyoruz. ve DNS sunucumuzda işlemimiz bitiyor. İkinci DNS sunucumuzdada yukarıdaki işlemleri yapmamız lazım. Mevcut betik iki dns sunucu için yazılmıştır. Bir DNS veya 2 den fazla DNS sunucu için kodda basit değişkilik yapmanız gerekir.
 
 NOT. isterseniz php ile yazılan betiği kullanmayıp **blacklisted.zones** dosyasına engellemek istediğiniz domain adreslerini 
-**zone "vakifbank-tr.com" {type master; file "/etc/bind/blockeddomains.db";};**
+*zone "vakifbank-tr.com" {type master; file "/etc/bind/blockeddomains.db";};*
 formatında ekleyerek engelleyebiliriz.
 
 3. Şimdi PHP kodlarını web serverimiza atıp onları belirli süreler ile çalıştırmaktan ibaret. 
