@@ -1,4 +1,4 @@
-# USOM Zararlı Bağlantı Listesini Bind DNS Servisinde Engelleme.
+# USOM Zararlı Bağlantı Listesini Bind DNS Sunucusunda Engelleme.
 
 PHP ile geliştirdiğimiz uygulama ile USOM zararlı bağlantı listesindeki(https://www.usom.gov.tr/zararli-baglantilar/1.html) domain adreslerini istediğimiz periyotlarla DNS sunucumuzda engelliyoruz.
 
