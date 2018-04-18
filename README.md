@@ -28,3 +28,5 @@ Destek için lütfen kenan.gulle@dpu.edu.tr,kenangulle@hotmail.com yazabilirsini
 2. Usom zararlı bağlantılar listesindeki kayıtların içinde sadece domain adreslerini almak için ip adreslerini önemsemiyoruz. yani domain adreslerini sadece alıyoruz.
 
 ...
+
+*DNS sunucuya ssh yapmak için https://github.com/phpseclib/phpseclib sınıfı kullanılmaktadır.*
