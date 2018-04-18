@@ -4,7 +4,7 @@ PHP ile geliştirdiğimiz uygulama ile USOM zararlı bağlantı listesindeki(htt
 
 # KURULUM
 
-1. DNS sunucumuzda **/etc/bind** klasörüne **blockeddomains.db** dosyasını ekliyoruz. (Bu dosyadaki 127.0.0.1 adresi engellenen domain adreslerinin hangi ip adresine yönlendireceğimiz bilgisidir.)
+1. DNS sunucumuzda **/etc/bind** klasörüne **blockeddomains.db** dosyasını ekliyoruz. (Bu dosyadaki 127.0.0.1 adresi engellenen domain adreslerinin hangi ip adresine yönlendireceğimiz bilgisidir. buradaki dns adresi bilgisini kendimize göre değiştirmemiz gerekiyor.)
 
 2. Dns sunucumuzda **named.conf.local** dosyasının en üstüne include **"/etc/bind/blacklisted.zones";** satırını ekliyoruz. ve DNS sunucumuzda işlemimiz bitiyor. İkinci DNS sunucumuzdada yukarıdaki işlemleri yapmamız lazım. Mevcut betik iki dns sunucu için yazılmıştır. Bir DNS veya 2 den fazla DNS sunucu için kodda basit değişkilik yapmanız gerekir.
 
