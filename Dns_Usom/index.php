@@ -6,10 +6,10 @@ require_once ('classusom.php');
 
 $server1 = "194.27.43.17";
 $username1 = "root";
-$password1 = "Sys_194.27.43.17!";
+$password1 = "pass";
 $server2 = "194.27.43.172";
 $username2 = "root";
-$password2 = "Sys_194.27.43.172!";
+$password2 = "pass";
 
 $ssh1 = new Net_SSH2($server1);
 $sftp1 = new Net_SFTP($server1);
