@@ -7,6 +7,7 @@ class Usom
 	static $dosya_ad = "sonkayit";
 	static $usom_xml_url = "https://www.usom.gov.tr/url-list.xml";
 	static $zonefile = "blacklisted.zones";
+	
 	function SMS_Gonder($telefon, $mesaj, $tip)
 	{
 		$url = "http://192.168.55.215:8080/kalkun/test2.php?telefon=" . $telefon . "&mesaj=USOM" . urlencode("\n" . $mesaj) . "&tip=" . $tip;
