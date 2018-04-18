@@ -73,7 +73,7 @@ echo $sonuc2 = $ssh2->exec("service bind9 status") . "<br />";
 // sonucta SUCCESS var mı diye kontrol ediyoruz. var ise servis calistigini gosteriyor,
 if (strpos($sonuc1, 'SUCCESS') !== false)
 {
-	$sonuc1 = true;
+	$dns1_sonuc = true;
 	// $Usom->SMS_Gonder("05423322504", "Güncel URL listesi alındı.\n$server1 DNS servisi başarıyla Çalıştırıldı.\nSon kayıt:" . $usom_son_guncelleme . "\n" . $sonuc_parser, "normal");
 }
 else
