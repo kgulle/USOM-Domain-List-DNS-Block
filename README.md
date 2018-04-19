@@ -25,7 +25,7 @@ Destek için lütfen kenan.gulle@dpu.edu.tr,kenangulle@hotmail.com yazabilirsini
 
 1. Usom zararlı bağlantılardaki eklenen son kaydın ID değerini sonkayit dosyamızdan okuyoruz, usom zararlı bağlantılar listesindeki eklenen son kaydın ID değeri ile karşılaştırıp büyük ise; ikinci adım, değil ise bir şey yapmıyor program sonlanıyor.(Engellenecek yeni kayıt olmadığı için)
 
-2. Usom zararlı bağlantılar listesindeki kayıtların içinde sadece domain adreslerini almak için ip adreslerini önemsemiyoruz. yani domain adreslerini sadece alıyoruz.
+2. Usom zararlı bağlantılar listesindeki kayıtların içinde sadece domain adreslerini almak için ip adreslerini önemsemiyoruz. yani  sadece domain adreslerini alıyoruz.
 
 ...
 
